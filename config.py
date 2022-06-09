@@ -1,6 +1,8 @@
 import datetime
 import os
 
+ROOT = os.path.dirname(os.path.abspath(__file__))
+
 
 class Config:
     # Base64 secret key to auth
@@ -24,3 +26,6 @@ class Config:
         os.environ.get("DB_HOST"),
         os.environ.get("DB_NAME")
     )
+    SQLALCHEMY_BINDS = {
+        'slave': SQLALCHEMY_DATABASE_URI
+    }

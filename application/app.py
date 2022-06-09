@@ -11,10 +11,13 @@ def create_app():
     db.init_app(app)
     jwt.init_app(app)
     ma.init_app(app)
-    migrate.init_app(app, db)
+    migrate.init_app(app, db, compare_type=True)
 
     @app.route("/", methods=["GET"])
     def index():
         return jsonify({"Hello": "World!"}), 200
+    
+    from application import user
+    user.init_app(app)
 
     return app

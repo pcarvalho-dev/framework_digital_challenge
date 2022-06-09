@@ -1,6 +1,6 @@
 import os
 
-from application import create_app
+from application.app import create_app
 
 app = create_app()
 port = os.environ.get('API_PORT', '5000')
