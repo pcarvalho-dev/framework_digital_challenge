@@ -18,7 +18,7 @@ class Config:
 
     # SQLAlchemy connect config
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_POOL_SIZE = 0
+    pool_size = 0
     SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{}:{}@{}/{}?charset=utf8mb4".format(
         os.environ.get("DB_USER"),
         os.environ.get("DB_PASS"),

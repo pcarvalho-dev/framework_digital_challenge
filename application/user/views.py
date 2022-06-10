@@ -19,13 +19,14 @@ def user_routes():
     try:
         if request.method == "GET":
             data = read_users()
-            return jsonify(data)
+            return jsonify(data), 200
         if request.method == "POST":
             data = create_user()
-            return data
+            return jsonify(data), 201
     except Exception as e:
         return error_return(500, str(e))
-    
+
+
 @user_bp.get("/<int:user_id>")
 @user_bp.put("/<int:user_id>")
 @user_bp.delete("/<int:user_id>")
@@ -41,12 +42,12 @@ def user_routes_by_id(user_id):
     try:
         if request.method == "GET":
             data = read_user(user_id)
-            return data
+            return jsonify(data), 200
         if request.method == "PUT":
-            data = update_user()
-            return data
+            data = update_user(user_id)
+            return jsonify(data), 200
         if request.method == "DELETE":
             data = delete_user(user_id)
-            return data
+            return jsonify(data), 204
     except Exception as e:
         return error_return(500, str(e))

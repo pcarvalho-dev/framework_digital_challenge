@@ -9,6 +9,9 @@ marshmallow-sqlalchemy==0.26.1
 Passlib==1.7.4
 python-dotenv
 PyMySQL==1.0.2
+pytest==7.1.2
+pytest-flask==1.2.0
 requests==2.26.0
 SQLAlchemy==1.4.26
 debugpy
+werkzeug==2.0.3
