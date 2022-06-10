@@ -1,6 +1,3 @@
-
-
-
 def error_return(status: int, message: str) -> tuple:
     data = {
         "error": {

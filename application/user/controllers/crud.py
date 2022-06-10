@@ -1,7 +1,7 @@
 from application.common.error_return import error_return
 from application.user.models import User
 from application.user.schemas import UserSchema
-from flask import request
+from flask import jsonify, request
 
 
 def create_user() -> dict:
@@ -11,8 +11,8 @@ def create_user() -> dict:
         dict: Dict with user data using schema.
     """
     request_body = request.get_json()
-    data = User().manage_body(request_body).save()
-    return UserSchema().dump(data)
+    data = User().create_fields(request_body).save()
+    return UserSchema().dump(data), 201
 
 
 def read_users() -> list:
@@ -26,7 +26,7 @@ def read_users() -> list:
 
     users = User.query.filter_by(
         deleted_at=None).paginate(page, per_page, False)
-    return UserSchema(many=True).dump(users.items)
+    return jsonify(UserSchema(many=True).dump(users.items))
 
 
 def read_user(id: int) -> dict:
@@ -39,6 +39,8 @@ def read_user(id: int) -> dict:
         dict: Dict with user data using schema.
     """
     user = User.query.filter_by(id=id, deleted_at=None).first()
+    if not user:
+        return error_return(404, "User Not Found")
     return UserSchema().dump(user)
 
 
@@ -54,7 +56,7 @@ def update_user(id: int) -> dict:
     request_body = request.get_json()
     user = User.query.filter_by(id=id, deleted_at=None).first()
     if user:
-        data = user.manage_body(request_body).update()
+        data = user.update_fields(request_body).update()
         return UserSchema().dump(data)
     else:
         return error_return(404, "User Not Found")
@@ -67,4 +69,8 @@ def delete_user(id: int) -> None:
         id (int): Id of user to delete.
     """
     user = User.query.filter_by(id=id, deleted_at=None).first()
-    user.delete()
+    if user:
+        user.delete()
+        return {}, 204
+    else:
+        return error_return(404, "User Not Found")

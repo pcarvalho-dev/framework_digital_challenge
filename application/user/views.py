@@ -1,3 +1,4 @@
+import json
 from application.common.error_return import error_return
 from application.user import user_bp
 from application.user.controllers.crud import (create_user, delete_user,
@@ -19,10 +20,10 @@ def user_routes():
     try:
         if request.method == "GET":
             data = read_users()
-            return jsonify(data), 200
+            return data
         if request.method == "POST":
             data = create_user()
-            return jsonify(data), 201
+            return data
     except Exception as e:
         return error_return(500, str(e))
 
@@ -42,12 +43,12 @@ def user_routes_by_id(user_id):
     try:
         if request.method == "GET":
             data = read_user(user_id)
-            return jsonify(data), 200
+            return data
         if request.method == "PUT":
             data = update_user(user_id)
-            return jsonify(data), 200
+            return data
         if request.method == "DELETE":
             data = delete_user(user_id)
-            return jsonify(data), 204
+            return data
     except Exception as e:
         return error_return(500, str(e))

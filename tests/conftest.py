@@ -21,9 +21,10 @@ def auth_token(client):
     with open('tests/mocks/login.json') as json_file:
         data = json.load(json_file)
 
-    url = "/auth/token"
-    response = client.post(url, data=data, headers=headers)
+    url = "/auth"
+    response = client.post(url, data=json.dumps(data), headers=headers)
     response_body = response.get_json()
+    print(response_body)
 
     if response.status_code == 401:
         raise KeyError('Usuário ou senha inválida')
