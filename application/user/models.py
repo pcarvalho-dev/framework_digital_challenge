@@ -7,8 +7,8 @@ class User(db.Model, BaseModel):
     __tablename__ = "user"
 
     email = db.Column(db.String(255), nullable=False)
-    username = db.Column(db.String(256), nullable=False)
-    password = db.Column(db.String(256), nullable=False)
+    username = db.Column(db.String(255), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
 
     def set_password(self, password):
         self.password = pbkdf2_sha256.hash(password)[20:]
