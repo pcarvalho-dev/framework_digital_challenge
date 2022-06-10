@@ -5,7 +5,7 @@ Api rest do desafio da framework digital.
 #### 1. Primeiro, instale o docker
 * [Docker](https://docs.docker.com/engine/install/debian/)
 
-* Se você utiliza linux, simplismente execute
+* Se você utiliza linux, simplesmente execute
 ```
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
@@ -16,7 +16,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo usermod -aG docker $USER
 ```
 * Após isso, reinicie seu computado.
-* Senão, siga o tutorial referente ao seu sistem operacional: [Página de instalação do docker](https://docs.docker.com/engine/install/)
+* Senão, siga o tutorial referente ao seu sistema operacional: [Página de instalação do docker](https://docs.docker.com/engine/install/)
 
 #### 2. Clone o projeto
 
@@ -63,7 +63,7 @@ docker-compose up --build
 >
 >>Tudo pronto
 
-#### Pra restaurar novamente sua base de dados
+#### Para restaurar novamente sua base de dados
 ```
 docker-compose down -v && docker-compose up -d
 ```
