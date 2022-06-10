@@ -16,9 +16,9 @@ class User(db.Model, BaseModel):
     def check_password(self, candidate):
         return pbkdf2_sha256.verify(candidate, f"$pbkdf2-sha256$29000{self.password}")
 
-    def create_object(self, dict_body):
-        self.email = dict_body.get("email", self.email)
-        self.username = dict_body.get("username", self.username)
-        self.set_password(dict_body["password"])
+    def manage_body(self, request_body):
+        self.email = request_body.get("email", self.email)
+        self.username = request_body.get("username", self.username)
+        self.set_password(request_body["password"])
 
         return self
