@@ -59,7 +59,6 @@ ipython_config.py
 __pypackages__/
 
 # Environment
-.env
 .venv
 env/
 venv/
