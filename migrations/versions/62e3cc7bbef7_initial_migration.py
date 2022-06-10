@@ -29,6 +29,10 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('id')
     )
+    op.execute('''
+               INSERT INTO user (email, username, password) 
+               VALUES ("sistema@email.com", "User Admin", "$TSklBMC4d65V6l1LCaH03g$Ig/yQSKzCbgRNpJCJ1PRRI011Q.KzPWcQJi91IFgoOg")
+               ''')
     # ### end Alembic commands ###
 
 
