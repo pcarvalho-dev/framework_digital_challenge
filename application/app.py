@@ -19,5 +19,8 @@ def create_app():
     
     from application import user
     user.init_app(app)
+    
+    from application import auth
+    auth.init_app(app)
 
     return app

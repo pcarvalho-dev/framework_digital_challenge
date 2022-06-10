@@ -6,8 +6,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 
 class Config:
     # Base64 secret key to auth
-    SECRET_KEY = os.environ.get('API_SECRET_KEY',
-                                'ZnJhbWV3b3JrOmRpZ2l0YWw6Y2hhbGxlbmdl')
+    SECRET_KEY = os.environ.get('API_SECRET_KEY')
 
     # Keep order of dictionary passed to jsonify
     JSON_SORT_KEYS = False
