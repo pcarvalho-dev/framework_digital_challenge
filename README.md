@@ -76,3 +76,22 @@ docker-compose down -v && docker-compose up -d
 ```
 docker-compose exec api pytest tests -v 
 ```
+
+# Postman Collection
+* A coleção de requisições do Postman se encontra no seguinte local:
+static/documentation/postman 
+
+#### Para que o postman detecte o access token automaticamente nas requisições verifique se na aba "Tests" da requisição de auth no postman possui o seguinte script:
+```
+var data = JSON.parse(responseBody);
+postman.setEnvironmentVariable("token", data.access_token); 
+```
+
+![postman script](static/documentation/postman_script.png)
+
+#### Caso prefira, passe o access token retornado pela rota auth manualmente na aba Authorization ou na aba Headers
+
+
+![postman script](static/documentation/postman_auth.png)
+
+
