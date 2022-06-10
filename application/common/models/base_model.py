@@ -5,7 +5,7 @@ from flask_sqlalchemy import Model
 
 
 class BaseModel(Model):
-    __table_args__ = {'extend_existing': True}
+    __table_args__ = {"extend_existing": True}
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, unique=True)
     created_at = db.Column(db.DateTime, default=datetime.now())

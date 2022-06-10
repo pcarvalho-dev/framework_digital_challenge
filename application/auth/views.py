@@ -1,8 +1,9 @@
 import os
 
 from application.auth import auth_bp
+from application.common.error_return import error_return
 from application.user.models import User
-from flask import abort, request
+from flask import request
 from flask_jwt_extended import create_access_token
 from sqlalchemy import or_
 
@@ -12,12 +13,12 @@ def login():
     basic = request.headers.get("Authorization")
     login = request.json.get("login", None)
     password = request.json.get("password", None)
-    secret_key = os.environ.get('API_SECRET_KEY')
+    secret_key = os.environ.get("API_SECRET_KEY")
 
     if basic != secret_key:
-        abort(401, "Invalid Basic Token")
+        return error_return(401, "Invalid Basic Token")
     if not basic:
-        abort(401, "Missing Basic Token")
+        return error_return(401, "Missing Basic Token")
 
     user = User.query.filter(or_(
         User.username == login,
@@ -29,6 +30,6 @@ def login():
             access_token = create_access_token(identity=login)
             return {"access_token": access_token}
         else:
-            abort(401, "Invalid Password")
+            return error_return(401, "Invalid Password")
     else:
-        abort(404, "User not found")
+        return error_return(404, "User Not Found")

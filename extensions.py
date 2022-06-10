@@ -58,11 +58,11 @@ class RoutingSession(orm.Session):
             state = get_state(self.app)
         except (AssertionError, AttributeError, TypeError) as err:
             current_app.logger.info(
-                'cant get configuration. default bind. Error:' + err)
+                "cant get configuration. default bind. Error:" + err)
             return orm.Session.get_bind(self, mapper, clause)
 
         # If there are no binds configured, use default SQLALCHEMY_DATABASE_URI
-        if not state or not self.app.config['SQLALCHEMY_BINDS']:
+        if not state or not self.app.config["SQLALCHEMY_BINDS"]:
             return orm.Session.get_bind(self, mapper, clause)
 
         # if want to user exact bind
@@ -89,7 +89,7 @@ class RouteSQLAlchemy(SQLAlchemy):
     def create_scoped_session(self, options=None):
         if options is None:
             options = {}
-        scopefunc = options.pop('scopefunc', None)
+        scopefunc = options.pop("scopefunc", None)
         return orm.scoped_session(
             partial(RoutingSession, self, **options),
             scopefunc=scopefunc,

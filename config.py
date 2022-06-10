@@ -6,7 +6,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 
 class Config:
     # Base64 secret key to auth
-    SECRET_KEY = os.environ.get('API_SECRET_KEY')
+    SECRET_KEY = os.environ.get("API_SECRET_KEY")
 
     # Keep order of dictionary passed to jsonify
     JSON_SORT_KEYS = False
@@ -26,5 +26,5 @@ class Config:
         os.environ.get("DB_NAME")
     )
     SQLALCHEMY_BINDS = {
-        'slave': SQLALCHEMY_DATABASE_URI
+        "slave": SQLALCHEMY_DATABASE_URI
     }

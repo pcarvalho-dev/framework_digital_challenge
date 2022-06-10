@@ -19,8 +19,8 @@ def read_users() -> list:
     Returns:
         list: List of dicts with users data using schema.
     """
-    page = request.args.get('page', default=1, type=int)
-    per_page = request.args.get('per_page', default=5, type=int)
+    page = request.args.get("page", default=1, type=int)
+    per_page = request.args.get("per_page", default=5, type=int)
     
     users = User.query.paginate(page, per_page, False)
     return UserSchema(many=True).dump(users.items)
